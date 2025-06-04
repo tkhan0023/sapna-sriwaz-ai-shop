@@ -1,8 +1,48 @@
 
 import { ShoppingBag, Search, User, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from '@/components/ui/navigation-menu';
 
 const Header = () => {
+  const productCategories = [
+    {
+      name: "Sarees",
+      description: "Traditional and modern sarees",
+      href: "#sarees"
+    },
+    {
+      name: "Kurtis",
+      description: "Elegant kurtis and tops",
+      href: "#kurtis"
+    },
+    {
+      name: "Lehengas",
+      description: "Designer lehengas for special occasions",
+      href: "#lehengas"
+    },
+    {
+      name: "Suits",
+      description: "Salwar suits and dress materials",
+      href: "#suits"
+    },
+    {
+      name: "Accessories",
+      description: "Jewelry and fashion accessories",
+      href: "#accessories"
+    },
+    {
+      name: "Fabrics",
+      description: "Premium fabrics and materials",
+      href: "#fabrics"
+    }
+  ];
+
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200">
       <div className="container mx-auto px-4 lg:px-6">
@@ -20,7 +60,37 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Home</a>
-            <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Products</a>
+            
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="text-gray-700 hover:text-blue-600 transition-colors font-medium bg-transparent hover:bg-transparent focus:bg-transparent data-[active]:bg-transparent data-[state=open]:bg-transparent">
+                    Products
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <div className="w-[500px] p-6 bg-white">
+                      <div className="grid grid-cols-2 gap-4">
+                        {productCategories.map((category) => (
+                          <a
+                            key={category.name}
+                            href={category.href}
+                            className="group block p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                          >
+                            <div className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors">
+                              {category.name}
+                            </div>
+                            <div className="text-sm text-gray-500 mt-1">
+                              {category.description}
+                            </div>
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+
             <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">About</a>
             <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Contact</a>
           </nav>
