@@ -1,3 +1,4 @@
+```tsx
 import { ShoppingBag, Search, User, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -8,9 +9,11 @@ import {
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
 import useStore from '@/store/useStore';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const cartItemCount = useStore(state => state.getCartItemCount());
+  const navigate = useNavigate();
   
   const productCategories = [
     {
@@ -105,7 +108,12 @@ const Header = () => {
             <Button variant="ghost" size="icon" className="hidden sm:flex">
               <User className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon" className="relative">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="relative"
+              onClick={() => navigate('/cart')}
+            >
               <ShoppingBag className="h-5 w-5" />
               {cartItemCount > 0 && (
                 <span className="absolute -top-1 -right-1 w-4 h-4 bg-blue-600 text-white text-xs rounded-full flex items-center justify-center">
@@ -124,3 +132,4 @@ const Header = () => {
 };
 
 export default Header;
+```
